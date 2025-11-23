@@ -49,7 +49,7 @@ def predict():
         threshold = 0.5
         probability = model.predict_proba(features)[0][1]
 
-        prediction_raw = 1 if probability > threshold else 0
+        prediction_raw = 0 if probability > threshold else 1
 
         result = {
     "prediction_raw": prediction_raw,
