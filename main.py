@@ -18,7 +18,7 @@ def predict():
         data = request.json
 
         
-        GENDER = data.get('GENDER'))
+        GENDER = data.get('GENDER')
 
         AGE = float(data.get('AGE'))
         SMOKING = int(data.get('SMOKING'))
