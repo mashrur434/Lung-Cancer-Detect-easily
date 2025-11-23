@@ -50,7 +50,7 @@ def predict():
 
         result = {
             "prediction_raw": int(prediction),
-            "prediction_text": "Yes (Lung Cancer patient)" if prediction == 0 else "No (No Lung cancer detected)"
+            "prediction_text": "Yes (Lung Cancer patient)" if prediction == 1 else "No (No Lung cancer detected)"
         }
 
         return jsonify(result)
