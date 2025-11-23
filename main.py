@@ -48,10 +48,16 @@ def predict():
 
         prediction = model.predict(features)[0]
 
+        prediction_raw = 1 if prediction > 0.5 else 0
+
+        prediction_text = (
+        "No (No Lung cancer detected)" if prediction_raw == 0 
+         else "Yes (Lung Cancer patient)")
+
+
         result = {
-            "prediction_raw": int(prediction),
-            "prediction_text": "Yes (Lung Cancer patient)" if prediction == 1 else "No (No Lung cancer detected)"
-        }
+            "prediction_raw": prediction_raw }
+             
 
         return jsonify(result)
 
