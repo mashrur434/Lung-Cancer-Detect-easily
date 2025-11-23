@@ -17,8 +17,8 @@ def predict():
     try:
         data = request.json
 
-        gender_map = {"M": 1, "F": 0}
-        GENDER = gender_map.get(data.get('GENDER'))
+        
+        GENDER = data.get('GENDER'))
 
         AGE = float(data.get('AGE'))
         SMOKING = int(data.get('SMOKING'))
@@ -46,17 +46,17 @@ def predict():
             'SWALLOWING DIFFICULTY','CHEST PAIN'
         ])
 
-        prediction = model.predict(features)[0]
+        threshold = 0.5
+        probability = model.predict_proba(features)[0][1]
 
-        prediction_raw = 1 if prediction > 0.5 else 0
-
-        prediction_text = (
-        "No (No Lung cancer detected)" if prediction_raw == 0 
-         else "Yes (Lung Cancer patient)")
-
+        prediction_raw = 1 if probability > threshold else 0
 
         result = {
-            "prediction_raw": prediction_raw }
+    "prediction_raw": prediction_raw,
+    "probability": probability,
+    "prediction_text": "Yes (Lung Cancer patient)" if prediction_raw == 1 
+                       else "No (No Lung cancer detected)"
+}
              
 
         return jsonify(result)
